@@ -58,7 +58,10 @@ body {
 }
 
 img {
-  width: 14rem;
+  margin: 5px;
+  border-radius: 10rem;
+  width: 6rem;
+  
 }
 
 h1 {
@@ -114,8 +117,10 @@ progress {
   background-color: var(--color-theme);
   border-radius: 100px;
 }
-
-.btn {
+.name-field{
+  margin:2rem;
+}
+.btn ,.name-field{
   display: block;
   font-family: inherit;
   color: inherit;
@@ -284,3 +289,73 @@ progress {
     width:6rem ;
   }
 }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+  
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  font-size: 1.6rem;
+}
+
+thead {
+  background-color: #f2f2f2;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+/* Highlight the header row */
+thead tr {
+  background-color: #3784d6;
+  color: white;
+  
+}
+
+/* Style the table rows */
+
+
+/* Style the username cell */
+td:first-child {
+  font-weight: bold;
+}
+
+/* MessagePopup.css */
+
+.message-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.message-popup-content {
+ background-color: #9dc9f6;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  max-width: 80%;
+  text-align: center;
+}
+
+
+
+.message-popup-message {
+  margin: 20px;
+  font-size: 3rem;
+  color: #343a40;
+}
+

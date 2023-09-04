@@ -9,7 +9,7 @@ export default function NextButton({dispatch,answer,index,numQuestion}) {
     </button>
       );
 
-else if(index=numQuestion-1)
+else if(index===numQuestion-1)
    return (
     <button className="btn btn-ui" onClick={()=>dispatch({type:"finish"})}>
     Finish
