@@ -1,14 +1,18 @@
 const express = require('express');
 const cors = require('cors');
-const questionsData = require('../data/question.json'); // Assuming the JSON file is in the same directory as server.js
+ // Assuming the JSON file is in the same directory as server.js
+const morgan = require('morgan');
+const questionsRouter = require('./router/route.js');
+const { connect } = require('./database/connections.js');
+
 
 const app = express();
-
+connect();
 app.use(cors());
+require('dotenv').config();
+app.use(express.json())
+app.use('/api',questionsRouter)
 
-app.get('/questions', (req, res) => {
-  res.json(questionsData.questions);
-});
 
 const PORT = process.env.PORT || 9000;
 
