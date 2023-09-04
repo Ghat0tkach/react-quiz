@@ -9,7 +9,7 @@ const { connect } = require('./database/connections.js');
 const app = express();
 connect();
 app.use(cors({
-  origin: "https://api.onrender.com",
+  origin: "*", // Allow requests from any origin
   headers: ["Content-Type"],
   credentials: true,
 }));
