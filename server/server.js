@@ -9,9 +9,7 @@ const { connect } = require('./database/connections.js');
 const app = express();
 connect();
 app.use(cors({
-  origin: "*", // Allow requests from any origin
-  headers: ["Content-Type"],
-  credentials: true,
+  origin: "http://localhost:3000/", 
 }));
 require('dotenv').config();
 app.use(express.json())
