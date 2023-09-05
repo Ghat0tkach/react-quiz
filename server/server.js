@@ -7,10 +7,8 @@ const { connect } = require('./database/connections.js');
 
 
 const app = express();
-connect();
-app.use(cors({
-  origin: "http://localhost:3000/", 
-}));
+connect()
+app.use(cors());
 require('dotenv').config();
 app.use(express.json())
 app.use('/api',questionsRouter)

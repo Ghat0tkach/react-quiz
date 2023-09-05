@@ -8,6 +8,7 @@ function Leaderboard() {
     // Fetch leaderboard data when the component mounts
     axios.get('https://api.render.com/deploy/srv-cjmq1ifjbvhs73dn1c90?key=DVM1narVdHk/api/leaderboard')
       .then((response) => {
+       
         setLeaderboardData(response.data);
       })
       .catch((error) => {
