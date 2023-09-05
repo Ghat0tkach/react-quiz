@@ -6,7 +6,7 @@ function Leaderboard() {
 
   useEffect(() => {
     // Fetch leaderboard data when the component mounts
-    axios.get('https://api.render.com/deploy/srv-cjmq1ifjbvhs73dn1c90?key=DVM1narVdHk/api/leaderboard')
+    axios.get('https://reactquizapppart2.onrender.com/api/leaderboard')
       .then((response) => {
        
         setLeaderboardData(response.data);

@@ -93,13 +93,11 @@ export default function App(){
   const maxPossiblePoints=questions.reduce((prev,cur)=>prev+cur.points,0);
 
   useEffect(function(){
-    fetch("https://reactquizapppart2.onrender.com/api/questions",{
-    }
-    )
-    .then((res)=>{
-      res.json()})
-    .then((data)=>dispatch({type:"dataReceived",payload:data}))
-    .catch((err)=>dispatch({type:"dataFailed"}))
+    fetch("https://reactquizapppart2.onrender.com/api/questions", {})
+    .then((res) => res.json()) // Return the parsed JSON data
+    .then((data) => dispatch({ type: "dataReceived", payload: data }))
+    .catch((err) => dispatch({ type: "dataFailed" }));
+  
   },[]);
   return <div className="app">
       <Header/>

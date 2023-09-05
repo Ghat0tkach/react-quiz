@@ -4,8 +4,6 @@ const cors = require('cors');
 const morgan = require('morgan');
 const questionsRouter = require('./router/route.js');
 const { connect } = require('./database/connections.js');
-
-
 const app = express();
 connect()
 app.use(cors());
