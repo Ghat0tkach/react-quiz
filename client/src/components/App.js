@@ -18,7 +18,7 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
-  secondsRemaining: 100,
+  secondsRemaining: 300,
   quizStartTime: null,
   totalTimeElapsed: 0,
   username: "", // Add username to initial state
@@ -93,7 +93,7 @@ export default function App(){
   const maxPossiblePoints=questions.reduce((prev,cur)=>prev+cur.points,0);
 
   useEffect(function(){
-    fetch("https://reactquizapppart2.onrender.com/api/questions", {})
+    fetch("http://localhost:5000/api/questions", {})
     .then((res) => res.json()) // Return the parsed JSON data
     .then((data) => dispatch({ type: "dataReceived", payload: data }))
     .catch((err) => dispatch({ type: "dataFailed" }));
