@@ -18,7 +18,7 @@ function FinishScreen({ points, maxPossiblePoints, dispatch ,username,totalTimeE
 
       const result = { username, points,time};
 
-      await PostServerData("http://localhost:5000/api/leaderboard", result, (data) => {
+      await PostServerData("https://reactquizapppart2.onrender.com/api/leaderboard", result, (data) => {
         if (data.success) {
           console.log("Score added to leaderboard successfully");
           console.log(data)
