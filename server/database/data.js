@@ -1,35 +1,14 @@
 const question = [
+
   {
-    "question": "About how many computer languages are in use?",
+    "question": "Oldest Programming Language?",
     "options": [
-      "20",
-      "5000",
-      "2000",
-      "500"
+      "Cobol",
+      "Fortran",
+      "Objective c",
+      "Erlang"
     ],
-    "correctOption": 2, // Index of the correct option
-    "points": 10
-  },
-  {
-    "question": "Q34 say the full meme dialogue?",
-    "options": [
-      "Pols agyee Pols",
-      "Im Batman",
-      "Tam to bade Heavy driver niklee",
-      "Aaj gadi tera bhai chalaega"
-    ],
-    "correctOption": 0,
-    "points": 10
-  },
-  {
-    "question": "Which of these is not an early computer?",
-    "options": [
-      "UNIVAC",
-      "INIAC",
-      "NASA",
-      "SAGE"
-    ],
-    "correctOption": 2, // Index of the correct option
+    "correctOption": 1, // Index of the correct option
     "points": 10
   },
   {
@@ -46,10 +25,10 @@ const question = [
   {
     "question": "Who is the current president of JLUG?",
     "options": [
-      "Miss Ishita Modi Ma’am",
-      "Mr. Klevin Pascal Sir",
-      "Mr. Mustkeem Arsh Sir",
-      "Mr. Saket Gupta Sir"
+      "Miss Ishita Modi ",
+      "Mr. Klevin Pascal ",
+      "Mr. Mustkeem Arsh ",
+      "Mr. Saket Gupta "
     ],
     "correctOption": 2, // Index of the correct option
     "points": 10
@@ -76,28 +55,7 @@ const question = [
     "correctOption": 0, // Index of the correct option
     "points": 10
   },
-  {
-    "question": "SAY THE FULL DIALOGUE !!!",
-    "options": [
-      "Ekdum se halat badal gye, jazbaat badal gye",
-      "Peeche dekho, Peeche",
-      "Kya hai Sachin me, Lappu sa Sachin hai",
-      "bhaiya fas gye baman ki ladki ke chakkar me"
-    ],
-    "correctOption": 2, // Index of the correct option
-    "points": 10
-  },
-  {
-    "question": "Guess the meme?",
-    "options": [
-      "Systummmm",
-      "Badmosii",
-      "Mai to tut gya bhaii",
-      "Humpe to hai hi na"
-    ],
-    "correctOption": 3, // Index of the correct option
-    "points": 10
-  },
+ 
   {
     "question": "Which of these is not one of the early ways to use the internet?",
     "options": [
@@ -107,17 +65,6 @@ const question = [
       "Blogging"
     ],
     "correctOption": 3, // Index of the correct option
-    "points": 10
-  },
-  {
-    "question": "Guess the anime?",
-    "options": [
-      "Kirito",
-      "Asuna",
-      "Krillin",
-      "Doraemon"
-    ],
-    "correctOption": 0, // Index of the correct option
     "points": 10
   },
   {
@@ -131,17 +78,7 @@ const question = [
     "correctOption": 3, // Index of the correct option
     "points": 10
   },
-  {
-  "question": "Guess the anime?",
-  "options": [
-    "Dr. Stone",
-    "Adventures of Luffy",
-    "One Piece",
-    "Attack on Titan"
-  ],
-  "correctOption": 2, // Index of the correct option (One Piece)
-  "points": 10
-  },
+
   {
     "question": "Who coined the term 'Artificial intelligence'?",
       "options": [
@@ -157,11 +94,11 @@ const question = [
     "question": "I am from the college but not a part of it. Who am I?",
     "options": [
       "Robertson Lake",
-      "IP Department",
+      "Civil Department",
       "NCC department",
       "AI Department "
     ],
-    "correctOption": 1, // Index of the correct option
+    "correctOption": 0, // Index of the correct option
     "points": 10
   },
   {
@@ -219,18 +156,7 @@ const question = [
     "correctOption": 0, // Index of the correct option
     "points": 10
   },
- 
-  {
-    "question": "Who is this character?",
-    "options": [
-      "Gian if he was fit",
-      "Kakashi",
-      "Takeshi",
-      "Suneo"
-    ],
-    "correctOption": 1, // Index of the correct option
-    "points": 10
-  },
+
   {
     "question": "Who is Batman's loyal butler and confidant?",
     "options": [
@@ -242,39 +168,8 @@ const question = [
     "correctOption": 0, // Index of the correct option
     "points": 10
   },
-  {
-    "question": "According to this song, what brand of perfume does Pappu wear?",
-    "options": [
-      "Prada",
-      "Gucci",
-      "Armani",
-      "Chanel"
-    ],
-    "correctOption": 1, // Index of the correct option
-    "points": 10
-  },
-  {
-    "question": "Guess the song name?",
-    "options": [
-      "SURAJ hua maddham, chaand jalne laga",
-      "Khoya Khoya Chand, Khula Aasman",
-      "Suraj Chachu sogye, Chanda Mama Jage",
-      "Haye Garmi"
-    ],
-    "correctOption": 0, // Index of the correct option
-    "points": 10
-  },
-  {
-    "question": "Guess the song?",
-    "options": [
-      "Tere liye dil ka telephone, bajta ring ring rara ring",
-      "Tune mari entriyaan, dil me baji ghantiyaan",
-      "Mai hu Gian",
-      "Dil zambhal sa zara"
-    ],
-    "correctOption": 0, // Index of the correct option
-    "points": 10
-  }
+ 
+
 ];
 
 module.exports = { question };
