@@ -14,6 +14,9 @@ const leaderboardSchema = new mongoose.Schema({
         default: 100.000
     }
     // Add other fields as needed
+},
+{
+    timestamps: true // Add this option to enable timestamps
 });
 
 const Leaderboard = mongoose.model("Leaderboard", leaderboardSchema);
