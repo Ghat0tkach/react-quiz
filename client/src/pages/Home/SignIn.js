@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import "./form.css"
+import "./form.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../store/features/userSlice";
+
 function SignInForm() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { status, error } = useSelector((state) => state.user);
   const [state, setState] = useState({
     email: "",
     password: ""
   });
-  const handleChange = evt => {
+
+  const handleChange = (evt) => {
     const value = evt.target.value;
     setState({
       ...state,
@@ -13,17 +21,21 @@ function SignInForm() {
     });
   };
 
-  const handleOnSubmit = evt => {
+  const handleOnSubmit = async (evt) => {
     evt.preventDefault();
 
     const { email, password } = state;
-    alert(`You are login with email: ${email} and password: ${password}`);
 
-    for (const key in state) {
-      setState({
-        ...state,
-        [key]: ""
-      });
+    // Dispatch the loginUser action
+    try {
+      await dispatch(loginUser({ email, password }));
+
+      // Login successful, you can navigate or perform other actions
+      console.log("Login successful!");
+      navigate("/quiz"); // Example: Navigate to the dashboard
+    } catch (error) {
+      // Login failed, handle the error
+      console.error("Error during login:", error.message);
     }
   };
 
@@ -31,7 +43,7 @@ function SignInForm() {
     <div className="form-container sign-in-container">
       <form onSubmit={handleOnSubmit}>
         <h1 className="sign-in">Sign in</h1>
-        
+
         <span>or use your account</span>
         <input
           type="email"
