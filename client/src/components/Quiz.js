@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from "react"
+import { useEffect, useReducer, useState } from "react"
 import Header from "./header"
 import Main from "./Main"
 import Loader from "./Loader"
@@ -87,24 +87,28 @@ function reducer(state, action) {
 }
 
 export default function Quiz(){
-  const [{questions,status,index,answer,points,secondsRemaining,totalTimeElapsed,username},dispatch]= useReducer(reducer,initialState);
-
+  const [{questions,index,status,answer,points,secondsRemaining,totalTimeElapsed},dispatch]= useReducer(reducer,initialState);
+ 
   const {user}=useSelector((state)=>state.user)
   const domain=user.domain;
   const numQuestions=questions.length; 
   const maxPossiblePoints=questions.reduce((prev,cur)=>prev+cur.points,0);
 
-  useEffect(function(){
+  useEffect(function () {
+    // Dispatch an action to set status to "loading" before making the request
+    
+  
     fetch(`https://jlug-quiz-server.onrender.com/api/v1/question/${domain}`, {})
       .then((res) => res.json()) // Return the parsed JSON data
       .then((data) => {
-        console.log(data); // Log the data
+        // console.log(data); // Log the data
         dispatch({ type: "dataReceived", payload: data });
       })
       .catch((err) => {
         console.error("Error fetching data:", err);
         dispatch({ type: "dataFailed" });
-      });
+      })
+   
   }, []);
 
   return <div className="app">
@@ -112,12 +116,12 @@ export default function Quiz(){
       <Main>
         {status==="loading" && <Loader/>}
         {status==="error" && <Error/>}
-        {status==="ready" &&<StartScreen
+        {/* {status==="ready" &&<StartScreen
             numquestions={numQuestions}
             dispatch={dispatch}
             setUsername={(username) => dispatch({ type: "setUsername", payload: username })}
-          />}
-        {status==="active" && 
+          />} */}
+        {status==="ready" && 
           <>
           <Progress index={index} numQuestion={numQuestions} points={points} maxPossiblePoints={maxPossiblePoints} answer={answer}/>
           <Question question={questions[index]} dispatch={dispatch} answer={answer}/>
@@ -127,7 +131,7 @@ export default function Quiz(){
          </Footer>
         </>
       }
-     {status==="finished"  && <FinishScreen points={points} maxPossiblePoints={maxPossiblePoints} dispatch={dispatch} username={username} totalTimeElapsed={totalTimeElapsed} />}
+     {status==="finished"  && <FinishScreen points={points} maxPossiblePoints={maxPossiblePoints}  totalTimeElapsed={totalTimeElapsed} user={user}/>}
          
       </Main>
   </div>

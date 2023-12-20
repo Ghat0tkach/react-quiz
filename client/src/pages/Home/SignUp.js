@@ -1,85 +1,72 @@
 import React, { useState } from "react";
-import "./form.css"
+import "./form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../store/features/userSlice";
+import Loader from "../../components/Loader";
+
 function SignUpForm() {
-  const dispatch=useDispatch(); 
-  const navigate=useNavigate();
-  const {status,error}=useSelector((state)=>state.user)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const[loading,setLoader]=useState(false);
   const [formData, setFormData] = useState({
-    fullName: '',
-    password: '',
-    domain: '',
-    email: '',
-    branch: '',
+    fullName: "",
+    password: "",
+    domain: "",
+    email: "",
+    branch: "",
   });
 
   const [errors, setErrors] = useState({
-    fullName: '',
-    phoneNumber: '',
-    homeTown: '',
-    email: '',
+    fullName: "",
+    email: "",
   });
+
+  const { status, error: loginError } = useSelector((state) => state.user);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    
+
     let updatedErrors = { ...errors };
     let updatedFormData = { ...formData };
-  // Input Validation
-    if (name === 'fullName') {
-      const alphabeticalValue = value.replace(/[^A-Za-z ]/g, '');
-      updatedFormData[name] = alphabeticalValue;
-      updatedErrors.fullName = alphabeticalValue.trim() === '' ? 'Please write your real name' : '';
-    }
-    else if (name === 'email') {
+
+    if (name === "fullName") {
       updatedFormData[name] = value;
-      updatedErrors.email = value !== '' && !validateEmail(value) ? 'Invalid email format' : '';
+      updatedErrors.fullName = value.trim() === "" ? "Full Name is required" : "";
+    } else if (name === "email") {
+      updatedFormData[name] = value;
+      updatedErrors.email =
+        value !== "" && (!validateEmail(value) || !value.endsWith("@gmail.com"))
+          ? "Invalid email format or not a Gmail address"
+          : "";
     } else {
       updatedFormData[name] = value;
-      updatedErrors[name] = value.trim() === '' ? `${name} is required` : '';
     }
-  
+
     setFormData(updatedFormData);
     setErrors(updatedErrors);
   };
+
   const validateEmail = (email) => {
-    // Basic email validation regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
-  
 
-
-
-  const branchOptions = [
-    'CS',
-    'AIADS',
-    'CE',
-    'IT',
-    'ME',
-    'IP',
-    'MT',
-    'EE',
-    'EC',
-  ];
+  const branchOptions = ["CS", "AIADS", "CE", "IT", "ME", "IP", "MT", "EE", "EC"];
   const DomainOptions = [
-    'Technical',
-    'Management',
-    'Sports',
-    'General Awareness',
+    { display: "Technical", value: "technical" },
+    { display: "Management", value: "management" },
+    { display: "Sports", value: "sports" },
+    { display: "General Awareness", value: "aptitude" },
   ];
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Check if there are any errors before submitting
-    if (Object.values(errors).some((error) => error !== '')) {
-      // Handle errors, maybe display a message or prevent the form submission
+    if (Object.values(errors).some((error) => error !== "")) {
       return;
     }
 
-    // Prepare data for the POST request
     const requestData = {
       name: formData.fullName,
       email: formData.email,
@@ -88,22 +75,21 @@ function SignUpForm() {
       domain: formData.domain,
     };
 
-    // Make the POST request
     try {
+      setLoader(true);
       await dispatch(registerUser(requestData));
-
-      // Registration successful, you can navigate or perform other actions
       console.log("Registration successful!");
-      navigate("/quiz"); // Example: Navigate to a success page
+      setLoader(false);
+      navigate("/quiz");
     } catch (error) {
-      // Registration failed, handle the error
       console.error("Error during registration:", error.message);
     }
   };
-  
 
   return (
+    
     <div className="form-container sign-up-container">
+     
       <form onSubmit={handleSubmit}>
       <input
           required
@@ -166,20 +152,22 @@ function SignUpForm() {
           onChange={handleInputChange}
         >  
               <option value="" disabled >Select Your Domain</option>
-                  {DomainOptions.sort().map((branch) => (
-                    
-                    <option key={branch} value={branch} >
-                      {branch}
-                    </option>
-    
-                  ))}
+              {DomainOptions.sort((a, b) => a.display.localeCompare(b.display)).map(
+    (option) => (
+      <option key={option.value} value={option.value}>
+        {option.display}
+      </option>
+    )
+  )}
         </select>
   
   
   
-  
-        <button type="submit">Sign Up</button>
+     {loading?<Loader statement="Signing You In"/>:
+     <button type="submit">Sign Up</button>}
+       
       </form>
+      {loginError && <p className="error text-red-500 text-center bg-yellow-50 p-2 border rounded-md">{loginError}</p>}
     </div>
   );
 }

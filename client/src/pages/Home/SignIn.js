@@ -32,7 +32,7 @@ function SignInForm() {
 
       // Login successful, you can navigate or perform other actions
       console.log("Login successful!");
-      navigate("/quiz"); // Example: Navigate to the dashboard
+      navigate("/start"); // Example: Navigate to the dashboard
     } catch (error) {
       // Login failed, handle the error
       console.error("Error during login:", error.message);
