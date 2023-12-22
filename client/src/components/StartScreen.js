@@ -10,17 +10,19 @@ function StartScreen({ onStart }) {
   const [loading, setLoader] = useState(true);
   const navigate = useNavigate();
   const [text,setText]=useState(`Are You Ready to Take on the ${user.domain} Challenge`);
-
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
         const response = await axios.get(
           `https://jlug-quiz-server.onrender.com/api/v1/final/getuser/${id}`
         );
-      
+        
         setUser(response.data);
-        if(username.score!=-1){
-          setText("Congratulations on Completing the Quiz")
+        console.log(response.data);
+  
+        // Check if 'points' is not null or undefined before accessing it
+        if (response.data && response.data.points !== undefined && response.data.points !== null) {
+          await setText("Congratulations on Completing the Quiz");
         }
       } catch (error) {
         console.error('Error fetching user details:', error.message);
@@ -28,9 +30,10 @@ function StartScreen({ onStart }) {
         setLoader(false);
       }
     };
-
+  
     fetchUserDetails();
   }, [id]);
+  
 
   const handleStart = () => {
     onStart();
@@ -75,7 +78,12 @@ function StartScreen({ onStart }) {
   return (
     <div className="start">
       <h3>Welcome {user.name} to the Quiz </h3>
+      {loading?(
+        <p>Hang on, Checking Status...</p>
+      ):
       <h4> {text}</h4>
+      }
+     
       {loading ? (
         <p>Hang on, We are getting your details...</p>
       ) : username?.points > -1 ? (

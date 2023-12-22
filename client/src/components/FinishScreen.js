@@ -44,7 +44,7 @@ function FinishScreen({ points, totalTimeElapsed, user }) {
       </p>
      
 
-     <Link to="/Home">Go To Home</Link>
+     <Link to="/">Go To Home</Link>
      
     </>
   );
