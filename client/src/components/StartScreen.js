@@ -41,12 +41,29 @@ function StartScreen({ onStart }) {
     const { user } = useSelector((state) => state.user);
   
     return (
-      <div>
-        <h2>Your Profile</h2>
-        <p>Name: {user.name}</p>
-        <p>Points: {points}</p>
-        {/* Add more information as needed */}
+
+      <div className="card">
+  <div className="top-section">
+    <div className="border"></div>
+    <div className="icons">
+    <span className="title profilehead">Your Profile</span>
+      
+    </div>
+  </div>
+  <div className="bottom-section">
+    <span className="title">Name: {user.name}</span>
+    <div className="row row1">
+      <div className="item">
+        <span className="big-text">Points : {points}</span>
+        <span className="big-text">Domain : {user.domain}</span>
+        <span className="big-text">Branch : {user.branch}</span>
+        {/* <span class="regular-text">UI elements</span> */}
       </div>
+     
+      
+    </div>
+  </div>
+</div>
     );
   }
 

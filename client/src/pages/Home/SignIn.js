@@ -3,11 +3,14 @@ import "./form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../store/features/userSlice";
+import Loader from "../../components/Loader";
 
-function SignInForm() {
+function SignInForm({toggleSignUp}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const[loading,setLoader]=useState(false);
   const { status, error } = useSelector((state) => state.user);
+  const [formSubmitted, setFormSubmitted] = useState(false); 
   const [state, setState] = useState({
     email: "",
     password: ""
@@ -22,7 +25,9 @@ function SignInForm() {
   };
 
   const handleOnSubmit = async (evt) => {
+    setFormSubmitted(true);
     evt.preventDefault();
+    setLoader(true);
 
     const { email, password } = state;
 
@@ -32,6 +37,7 @@ function SignInForm() {
 
       // Login successful, you can navigate or perform other actions
       console.log("Login successful!");
+      setLoader(false);
       navigate("/start"); // Example: Navigate to the dashboard
     } catch (error) {
       // Login failed, handle the error
@@ -59,8 +65,17 @@ function SignInForm() {
           value={state.password}
           onChange={handleChange}
         />
-        <button>Sign In</button>
+        
+        {loading?<Loader statement="Signing You In"/>:
+     <button type="submit">Sign In</button>}
       </form>
+      
+      <div className="toggle-button">
+          <p>Are you not a user?</p>
+          <button className="toggle-btn" type="button" onClick={toggleSignUp} disabled={formSubmitted}>
+            Register here
+          </button>
+        </div>
     </div>
   );
 }

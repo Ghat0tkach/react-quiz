@@ -4,7 +4,12 @@ import SignInForm from "./SignIn";
 import SignUpForm from "./SignUp";
 
 export default function Home({dispatch}) {
+  const [parentLoginError, setParentLoginError] = useState("");
   const [type, setType] = useState("signIn");
+  console.log(parentLoginError)
+  const handleLoginErrorChange = (error) => {
+    setParentLoginError("User already Exists");
+  };
   const handleOnClick = text => {
     if (text !== type) {
       setType(text);
@@ -15,10 +20,12 @@ export default function Home({dispatch}) {
     "container " + (type === "signUp" ? "right-panel-active" : "");
   return (
     <div className="App1">
+    <p className="error">{parentLoginError}</p>
       <h2>Sign in/up to get Started</h2>
       <div className={containerClass} id="container">
-        <SignUpForm dispatch={dispatch} />
-        <SignInForm dispatch={dispatch} />
+        <SignUpForm dispatch={dispatch} toggleSignIn={() => handleOnClick("signIn")} onLoginErrorChange={setParentLoginError} />
+        <SignInForm dispatch={dispatch} toggleSignUp={() => handleOnClick("signUp")}/>
+        
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
@@ -48,6 +55,7 @@ export default function Home({dispatch}) {
           </div>
         </div>
       </div>
+    
     </div>
   );
 }

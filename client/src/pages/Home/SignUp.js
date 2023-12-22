@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../store/features/userSlice";
 import Loader from "../../components/Loader";
 
-function SignUpForm() {
+function SignUpForm({toggleSignIn,onLoginErrorChange}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const[loading,setLoader]=useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false); // New state
   const [formData, setFormData] = useState({
     fullName: "",
     password: "",
@@ -23,8 +24,7 @@ function SignUpForm() {
   });
 
   const { status, error: loginError } = useSelector((state) => state.user);
-
-  const handleInputChange = (event) => {
+   const handleInputChange = (event) => {
     const { name, value } = event.target;
 
     let updatedErrors = { ...errors };
@@ -66,7 +66,7 @@ function SignUpForm() {
     if (Object.values(errors).some((error) => error !== "")) {
       return;
     }
-
+    setFormSubmitted(true);
     const requestData = {
       name: formData.fullName,
       email: formData.email,
@@ -78,11 +78,10 @@ function SignUpForm() {
     try {
       setLoader(true);
       await dispatch(registerUser(requestData));
-      console.log("Registration successful!");
       setLoader(false);
       navigate("/quiz");
     } catch (error) {
-      console.error("Error during registration:", error.message);
+      onLoginErrorChange(loginError);
     }
   };
 
@@ -91,6 +90,7 @@ function SignUpForm() {
     <div className="form-container sign-up-container">
      
       <form onSubmit={handleSubmit}>
+      <span className="display"> Register here</span>
       <input
           required
           className={`w-full p-3 mb-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300 focus:animate-pulse transition-all`}
@@ -163,11 +163,18 @@ function SignUpForm() {
   
   
   
-     {loading?<Loader statement="Signing You In"/>:
+     {loading?<Loader statement="Registering You In"/>:
      <button type="submit">Sign Up</button>}
        
       </form>
-      {loginError && <p className="error text-red-500 text-center bg-yellow-50 p-2 border rounded-md">{loginError}</p>}
+     
+      <div className="toggle-button">
+          <p>Already a user?</p>
+          <button className="toggle-btn" type="button" onClick={toggleSignIn}  disabled={formSubmitted} >
+            Login Here
+          </button>
+        </div>
+    
     </div>
   );
 }
