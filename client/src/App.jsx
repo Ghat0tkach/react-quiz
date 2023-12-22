@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Home from './pages/Home';
 import Quiz from './components/Quiz';
-import FinishScreen from './pages/FinishScreen';
+
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import StartScreen from './components/StartScreen';
+import FinishScreen from './components/FinishScreen';
 
 function App() {
   const [startedQuiz, setStartedQuiz] = useState(false);
@@ -26,7 +27,7 @@ function App() {
           // If not started, redirect to /
           <Route path='*' element={<Navigate to='/' />} />
         )}
-        <Route path='/finish' element ={<FinishScreen/>}/>
+       
 </Routes>
    </Router>
   )

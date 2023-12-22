@@ -36,7 +36,7 @@ function SignInForm({toggleSignUp}) {
       await dispatch(loginUser({ email, password }));
 
       // Login successful, you can navigate or perform other actions
-      console.log("Login successful!");
+      // console.log("Login successful!");
       setLoader(false);
       navigate("/start"); // Example: Navigate to the dashboard
     } catch (error) {
