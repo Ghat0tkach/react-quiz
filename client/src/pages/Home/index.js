@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import "./form.css";
 import SignInForm from "./SignIn";
 import SignUpForm from "./SignUp";
+import { useSelector } from "react-redux";
 
 export default function Home({dispatch}) {
+  const {user,error}=useSelector(state=>state.user)
+  console.log(error);
   const [parentLoginError, setParentLoginError] = useState("");
   const [type, setType] = useState("signIn");
   console.log(parentLoginError)
@@ -20,12 +23,12 @@ export default function Home({dispatch}) {
     "container " + (type === "signUp" ? "right-panel-active" : "");
   return (
     <div className="App1">
-    <p className="error">{parentLoginError}</p>
+     
       <h2>Sign in/up to get Started</h2>
       <div className={containerClass} id="container">
-        <SignUpForm dispatch={dispatch} toggleSignIn={() => handleOnClick("signIn")} onLoginErrorChange={setParentLoginError} />
+        <SignUpForm dispatch={dispatch} toggleSignIn={() => handleOnClick("signIn")}  />
         <SignInForm dispatch={dispatch} toggleSignUp={() => handleOnClick("signUp")}/>
-        
+       
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
@@ -52,6 +55,7 @@ export default function Home({dispatch}) {
                 Sign Up
               </button>
             </div>
+          
           </div>
         </div>
       </div>

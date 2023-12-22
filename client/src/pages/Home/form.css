@@ -206,8 +206,8 @@ input,select {
 }
 .error{
   color: red;
-  font-size: 3rem;
-  width: 50%;
+  font-size: 1rem;
+  line-height: 10px;
   background: transparent;
 }
 .overlay-panel {

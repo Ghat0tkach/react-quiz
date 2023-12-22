@@ -68,8 +68,9 @@ function SignInForm({toggleSignUp}) {
         
         {loading?<Loader statement="Signing You In"/>:
      <button type="submit">Sign In</button>}
+     <p className="error">{error}</p>
       </form>
-      
+     
       <div className="toggle-button">
           <p>Are you not a user?</p>
           <button className="toggle-btn" type="button" onClick={toggleSignUp} disabled={formSubmitted}>
