@@ -21,7 +21,7 @@ function StartScreen({ onStart }) {
         console.log(response.data);
   
         // Check if 'points' is not null or undefined before accessing it
-        if (response.data && response.data.points !== undefined && response.data.points !== null) {
+        if (response.data && response.data.points !== undefined && response.data.points !== null && response.data.points !== -1) {
           await setText("Congratulations on Completing the Quiz");
         }
       } catch (error) {
