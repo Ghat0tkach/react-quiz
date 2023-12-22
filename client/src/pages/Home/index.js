@@ -6,13 +6,9 @@ import { useSelector } from "react-redux";
 
 export default function Home({dispatch}) {
   const {user,error}=useSelector(state=>state.user)
-  console.log(error);
-  const [parentLoginError, setParentLoginError] = useState("");
+
   const [type, setType] = useState("signIn");
-  console.log(parentLoginError)
-  const handleLoginErrorChange = (error) => {
-    setParentLoginError("User already Exists");
-  };
+
   const handleOnClick = text => {
     if (text !== type) {
       setType(text);

@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { registerUser } from "../../store/features/userSlice";
 import Loader from "../../components/Loader";
 
-function SignUpForm({toggleSignIn,onLoginErrorChange}) {
+function SignUpForm({toggleSignIn}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const[loading,setLoader]=useState(false);
@@ -81,7 +81,7 @@ function SignUpForm({toggleSignIn,onLoginErrorChange}) {
       setLoader(false);
       navigate("/quiz");
     } catch (error) {
-      onLoginErrorChange(loginError);
+         console.log(error);
     }
   };
 
