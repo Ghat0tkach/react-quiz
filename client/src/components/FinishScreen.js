@@ -42,7 +42,7 @@ function FinishScreen({ points, totalTimeElapsed, user }) {
         You scored <strong>{points}</strong> Points <strong>👏🚀</strong>
 
       </p>
-      <p className="result">Time taken : {totalTimeElapsed} seconds</p>
+     
 
      <Link to="/">Go To Home</Link>
      
