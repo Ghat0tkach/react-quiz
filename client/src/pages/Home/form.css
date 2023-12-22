@@ -224,6 +224,12 @@ input,select {
   transform: translateX(0);
   transition: transform 0.6s ease-in-out;
 }
+.overlay-right p{
+  color: #fff;
+}
+.overlay-left p{
+  color: #fff;
+}
 
 .overlay-left {
   transform: translateX(-20%);
