@@ -33,7 +33,10 @@ body {
   /* background-color: var(--color-darkest); */
   padding: 3.2rem;
 }
-
+p{
+  color: rgb(59, 58, 58);
+  font-weight: 600;
+}
 .app {
   display: flex;
   flex-direction: column;
@@ -154,6 +157,7 @@ progress {
 
 .btn-ui {
   float: right;
+  background-color: #71b7ce
 }
 
 .options {

@@ -9,6 +9,7 @@ function StartScreen({ onStart }) {
   const [username, setUser] = useState(null);
   const [loading, setLoader] = useState(true);
   const navigate = useNavigate();
+  const [text,setText]=useState(`Are You Ready to Take on the ${user.domain} Challenge`);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -18,6 +19,9 @@ function StartScreen({ onStart }) {
         );
       
         setUser(response.data);
+        if(username.score!=-1){
+          setText("Congratulations on Completing the Quiz")
+        }
       } catch (error) {
         console.error('Error fetching user details:', error.message);
       } finally {
@@ -36,6 +40,7 @@ function StartScreen({ onStart }) {
   const handleFinish = () => {
     navigate('/finish');
   };
+
 
   function UserProfile({points}) {
     const { user } = useSelector((state) => state.user);
@@ -70,7 +75,7 @@ function StartScreen({ onStart }) {
   return (
     <div className="start">
       <h3>Welcome {user.name} to the Quiz </h3>
-      <h4> Are You Ready to Take on the {user.domain} Challenge?</h4>
+      <h4> {text}</h4>
       {loading ? (
         <p>Hang on, We are getting your details...</p>
       ) : username?.points > -1 ? (
